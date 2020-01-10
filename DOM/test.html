@@ -1,0 +1,43 @@
+<body>
+  <form>
+    <input type="text" name="" id="name" value=""/>
+    <input name="" id="btn" value="追加"/>
+  </form>
+  <h3>TODOリスト</h3> <!-- 追記 -->
+  <ul id="lists"></ul>　<!-- 追記 -->
+  <button type="button" id="deleteButton">削除する</button>
+  <script>
+    const lists = document.getElementById('lists');
+    const target = document.getElementById('btn');
+    target.addEventListener('click', function() {
+    //イベントが発生したときに動く関数
+      const form = document.getElementById('name');
+      const list = document.createElement('li');
+      list.textContent = form.value;
+
+      //追加開始
+      list.addEventListener('click',function(e){
+        const doneList = e.target;
+        doneList.style.textDecoration = 'line-through';
+        doneList.style.color = 'gray';
+        doneList.style.fontStyle = 'italic';
+      },false);
+      //追加終了
+
+
+
+      lists.appendChild(list);
+      form.value = "";
+    },false);
+
+    const deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click', function(){
+      while(lists.firstChild){
+        lists.removeChild(lists.firstChild);
+      }
+    },false);
+
+
+
+  </script>
+</body>
